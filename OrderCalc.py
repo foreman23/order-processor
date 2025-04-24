@@ -2,7 +2,20 @@ from datetime import datetime
 from datetime import timedelta
 
 
-def OrderCalculator(order_quantity, processing_minutes_per_item, shifts, working_days, start_date):
+def order_calculator(order_quantity, processing_minutes_per_item, shifts, working_days, start_date):
+    """
+    Returns the calendar days an order will take to complete along with the expected date of completion.
+
+    :param int order_quantity: The number of items to be processed
+    :param int processing_minutes_per_item: Amount of time in minutes that it takes to process one item
+    :param list[dict] shifts: Working hours for the day
+    :param list[int] working_days: The days of the week in that work occurs
+    :param str start_date: Starting date for the order formatted as 'YYYY-MM-DD'
+
+    :return: A dictionary with two keys:
+        calendar_days: The number of calendar days taken to complete the order
+        completion_date: The date when the order will be completed
+    """
     minutes_to_complete = processing_minutes_per_item * order_quantity
 
     # validate input types
